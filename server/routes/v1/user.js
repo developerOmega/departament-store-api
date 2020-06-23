@@ -3,7 +3,7 @@ const app = express();
 const bcrypt = require('bcrypt');
 const { authAdmin, authAdminOrUser } = require('../../middlewares/authJwt');
 const { authUserId } = require('../../middlewares/authComponents');
-const { User } = require('../../../models');
+const { User, Ticket, Product } = require('../../../models');
 
 app.get('/api/v1/users', authAdmin, async ( req, res ) => {
     try {
@@ -69,6 +69,9 @@ app.post('/api/v1/users', async (req, res) => {
             name: body.name,
             email: body.email,
             password: bcrypt.hashSync(body.password, 10),
+            country: body.country,
+            city: body.city,
+            address: body.address
         });
 
         return res.json({
@@ -138,7 +141,7 @@ app.delete('/api/v1/users/:id', [authAdminOrUser, authUserId], async (req, res) 
 
         return res.json({
             ok: true,
-            message: "El registr se puedo eliminar con exito"
+            message: "El registr se pudo eliminar con exito"
         })
     } catch (error) {
         return res.status(400).json({
@@ -148,7 +151,41 @@ app.delete('/api/v1/users/:id', [authAdminOrUser, authUserId], async (req, res) 
             }
         })
     }
-})
+});
+
+app.get('/api/v1/users/:id/tickets', [authAdminOrUser, authUserId], async (req, res) => {
+    let id = req.params.id;
+
+    try {
+        let user = await User.findByPk(id);
+        let tickets = await Ticket.findAll( {
+            where:{userId: user.id},
+            include: {model: Product}
+        })
+
+        if(tickets.length < 1){
+            return res.status(404).json({
+                ok: false,
+                err: {
+                    message: "No hay registro existentes"
+                }
+            });
+        }
+
+        return res.json({
+            ok: true,
+            tickets
+        });
+
+    } catch (error) {
+        return res.status(500).json({
+            ok: false,
+            err:{
+                message: error.message
+            }
+        })
+    }
+});
 
 
 module.exports = app;

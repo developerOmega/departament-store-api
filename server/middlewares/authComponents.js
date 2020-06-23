@@ -1,3 +1,6 @@
+const { Ticket } = require('../../models');
+
+
 const authUserId = (req, res, next) => {
     if(!req.user){
         return next();
@@ -17,6 +20,27 @@ const authUserId = (req, res, next) => {
     next();
 }
 
+const authTicketByUser= async ( req, res, next ) => {
+    if(!req.user){
+        return next();
+    }
+
+    let id = req.params.id;
+    let ticket = await Ticket.findByPk(id);
+
+    if(ticket.userId != req.user.id){
+        return res.status(403).json({
+            ok: false,
+            err: {
+                message: "No tiene permisos para ver esta información"
+            }
+        })
+    }
+
+    next();
+
+}
+
 const authSuperAdmin = (req, res, next) => {
     if(req.admin.superAdmin == false){
         return res.status(403).json({
@@ -31,5 +55,5 @@ const authSuperAdmin = (req, res, next) => {
 }
 
 module.exports = {
-    authUserId, authSuperAdmin
+    authUserId, authSuperAdmin, authTicketByUser
 }

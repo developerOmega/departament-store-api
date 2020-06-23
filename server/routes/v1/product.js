@@ -4,9 +4,20 @@ const { authAdmin, authAdminOrUser } = require('../../middlewares/authJwt');
 const { Product, Admin, Type, Brand } = require('../../../models');
 
 app.get('/api/v1/products', authAdminOrUser, async (req, res) => {
+    let brandId = req.query.brandId || 0;
+    let typeId = req.query.typeId || 0;
+    let where = {};
+
+    if(brandId != 0){
+        where.brandId = brandId;
+    }
+
+    if(typeId != 0){
+        where.typeId = typeId;
+    }
     
     try {
-        let products = await Product.findAll();
+        let products = await Product.findAll({where});
 
         if(products.length < 1){
             return res.status(404).json({

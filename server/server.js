@@ -24,6 +24,8 @@ app.use(require('./routes/v1/brandType'));
 app.use(require('./routes/v1/product'));
 app.use(require('./routes/v1/user'));
 app.use(require('./routes/v1/userAuth'));
+app.use(require('./routes/v1/ticket'));
+app.use(require('./routes/v1/ticketProduct'));
 // adminRouter(app, admin);
 
 app.listen(port, () => {

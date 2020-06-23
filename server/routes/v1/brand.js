@@ -159,4 +159,37 @@ app.delete('/api/v1/brands/:id', authAdmin, async (req, res) => {
 });
 
 
+app.get('/api/brands/:id/types', authAdminOrUser, async (req, res) => {
+    let id = req.params.id;
+    
+    try {
+        let brand = await Brand.findByPk(id, {
+            include: {model: Type}
+        })
+
+        let types = brand.Types;
+
+        if(types.length < 1){
+            return res.status(404).json({
+                ok: false,
+                err: {
+                    message: "No hay registros existentes"
+                }
+            })
+        }
+
+        return res.json({
+            ok: true,
+            types
+        })
+    } catch (error) {
+        return res.json({
+            ok: true,
+            err: {
+                message: error.message
+            }
+        })
+    }
+});
+
 module.exports = app;

@@ -43,6 +43,8 @@ module.exports = (sequelize, DataTypes) => {
     Product.belongsTo(models.Type, {
       foreignKey: "typeId"
     });
+
+    Product.belongsToMany( models.Ticket, { through: 'TicketProducts' } );
   };
   return Product;
 };
