@@ -11,5 +11,6 @@ app.use(require('./v1/user'));
 app.use(require('./v1/userAuth'));
 app.use(require('./v1/ticket'));
 app.use(require('./v1/ticketProduct'));
+app.use(require('./v1/files'));
 
 module.exports = app;

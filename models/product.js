@@ -16,6 +16,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    img: {
+      type: DataTypes.STRING, 
+      defaultValue: ''  
+    },
     brandId: {
       type: DataTypes.INTEGER,
       allowNull: false
@@ -27,8 +31,9 @@ module.exports = (sequelize, DataTypes) => {
     adminId: {
       type: DataTypes.INTEGER,
       allowNull: false
-    }
+    },
   }, {});
+
   Product.associate = function(models) {
     // associations can be defined here
     Product.belongsTo(models.Admin, {
@@ -46,5 +51,15 @@ module.exports = (sequelize, DataTypes) => {
 
     Product.belongsToMany( models.Ticket, { through: 'TicketProducts' } );
   };
+
+  Product.prototype.imageUrl =  function(url){
+    if(url.match(/www.dropbox.com/)){
+      let regex = /www.dropbox.com/;
+      let imageUrl = url.replace(regex, 'dl.dropboxusercontent.com');
+      imageUrl = imageUrl.replace( /[?]dl=0/, '' );
+      return imageUrl;
+    }
+  }
+
   return Product;
 };

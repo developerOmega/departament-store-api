@@ -6,8 +6,6 @@ const DropboxApi = require('./dropbox/dropbox');
 const app = express();
 
 const fileUpload = require('express-fileupload');
-// const multer = require('multer');
-// var upload = multer();
 
 /* body parser */
 app.use(bodyParser.urlencoded({extended: false}));
