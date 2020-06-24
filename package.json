@@ -12,7 +12,10 @@
   "dependencies": {
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
+    "dropbox": "^5.1.0",
     "express": "^4.17.1",
+    "express-fileupload": "^1.1.7-alpha.3",
+    "isomorphic-fetch": "^2.2.1",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.1.0",
     "sequelize": "^5.21.12",
