@@ -5,7 +5,7 @@ class DropboxApi {
     static instance;
 
     constructor(){
-        this.dbx = new Dropbox({accessToken: 'rAiom9haNiAAAAAAAAACv1cf5pRRVHbEHg-su0M6M1cAGXGjvr2qcLV3Q027d0y3', fetch});  
+        this.dbx = new Dropbox({accessToken: 'rAiom9haNiAAAAAAAAAC82arolu397MRkZr5f4e4r-rBhStIsbJSmH_V_tZVJLyQ', fetch});  
     }
 
     static on(){
@@ -27,6 +27,12 @@ class DropboxApi {
 
     sharedLink(path, callback){
       this.dbx.sharingCreateSharedLinkWithSettings({path})
+        .then(response => callback(null, response))
+        .catch(error => callback(error));
+    }
+
+    delete(path, callback){
+      this.dbx.filesDelete({path})
         .then(response => callback(null, response))
         .catch(error => callback(error));
     }

@@ -8,11 +8,6 @@ const validateFiles = (req, res, next) => {
         });
     }
 
-    next();
-}
-
-const validateExtension = (req, res, next) => {
-
     let img = req.files.img.name;
     let cutName = img.split('.');
     let extension = cutName[cutName.length - 1];
@@ -31,5 +26,4 @@ const validateExtension = (req, res, next) => {
     next();
 }
 
-
-module.exports = { validateFiles, validateExtension }
+module.exports = { validateFiles }
