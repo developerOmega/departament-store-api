@@ -4,11 +4,17 @@ const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
+// const env = process.env.NODE_ENV || 'development';
+const config = require(__dirname + '/../config/config.json')[env];
 const { DatabaseEnv } = require('../server/config/config');
 const db = {};
 
+config.production.username = DatabaseEnv.user;
+config.production.password = DatabaseEnv.password;
+config.production.database = DatabaseEnv.database;
+config.production.host = DatabaseEnv.host;
+
 let sequelize = new Sequelize(DatabaseEnv.database, DatabaseEnv.user, DatabaseEnv.password, {
-  host: DatabaseEnv.host,
   dialect: DatabaseEnv.dialect
 })
 
