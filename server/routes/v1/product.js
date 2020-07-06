@@ -17,7 +17,7 @@ app.get('/api/v1/products', authAdminOrUser, async (req, res) => {
     }
     
     try {
-        let products = await Product.findAll({where});
+        let products = await Product.findAll({where, include: {model: Brand}});
 
         if(products.length < 1){
             return res.status(404).json({

@@ -5,7 +5,7 @@ class DropboxApi {
     static instance;
 
     constructor(){
-        this.dbx = new Dropbox({accessToken: 'rAiom9haNiAAAAAAAAAC82arolu397MRkZr5f4e4r-rBhStIsbJSmH_V_tZVJLyQ', fetch});  
+        this.dbx = new Dropbox({accessToken: 'rAiom9haNiAAAAAAAAADAs6vJJaqbAfZ95RRSTtnbx7cvIVHl2W1M6mYbNE0E3OZ', fetch});  
     }
 
     static on(){

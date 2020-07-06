@@ -3,6 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   const Ticket = sequelize.define('Ticket', {
     userId: {
       type: DataTypes.INTEGER,
+      onDelete: 'CASCADE',
       allowNull: false
     },
     total: {

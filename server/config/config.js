@@ -3,7 +3,7 @@ const fs = require('fs');
 //====================================
 // Puerto
 //====================================
-const port =  process.env.PORT || 3000;
+const port =  process.env.PORT || 4000;
 
 
 //====================================
@@ -40,17 +40,38 @@ class JwtEnv {
 }
 
 //====================================
+// CONFIGURACION DE MAIL
+//====================================
+
+class Mail {
+    static from = 'developeromega98@gmail.com' || process.env.EMAIL_FROM;
+    static password = process.env.PASSWORD;
+    static subject = "Confirmando cuenta DepartamentStore";
+    static html(user) {
+        return `
+            <div>
+                <h1>Confirmación de cuenta de ${user.email}.</h1>
+
+                <form method="POST" action="http://localhost:3000/api/v1/users/${user.id}/auth-mail" >
+                    <button type="submit"> Confirmar cuenta </button>
+                </form>
+            </div>
+        `
+    }
+}
+
+//====================================
 // BASE DE DATOS
 //====================================
 class DatabaseEnv {
     static host = nodeEnv === 'development' ? '127.0.0.1' : process.env.HOST ;
-    static user = nodeEnv === 'development' ? 'root' : process.env.USER;
+    static user = nodeEnv === 'development' ? 'postgres' : process.env.USER;
     static password = nodeEnv === 'development' ? '1234': process.env.PASSWROD;
     static database = nodeEnv === 'development' ? 'departament_store' : process.env.DATABASE;
-    static dialect = nodeEnv === 'development' ? 'mysql' : 'pg'
+    static dialect = nodeEnv === 'development' ? 'postgres' : 'postgres'
 }
 
 
 module.exports = { 
-    port, nodeEnv, JwtEnv, DatabaseEnv
+    port, nodeEnv, JwtEnv, DatabaseEnv, Mail
 }

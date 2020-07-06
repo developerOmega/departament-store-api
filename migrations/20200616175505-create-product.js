@@ -18,7 +18,7 @@ module.exports = {
         defaultValue: 0.0
       },
       description: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(1234),
         allowNull: false,
       },
       brandId: {
