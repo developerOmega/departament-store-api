@@ -45,7 +45,7 @@ class JwtEnv {
 
 class Mail {
     static from = 'developeromega98@gmail.com' || process.env.EMAIL_FROM;
-    static password = process.env.PASSWORD;
+    static password = process.env.EMAIL_PASSWORD;
     static subject = "Confirmando cuenta DepartamentStore";
     static html(user) {
         return `
