@@ -12,6 +12,11 @@ const port =  process.env.PORT || 4000;
 const nodeEnv = process.env.NODE_ENV || 'development';
 
 //====================================
+// Entorno
+//====================================
+const dropboxEnv = 'rAiom9haNiAAAAAAAAADAs6vJJaqbAfZ95RRSTtnbx7cvIVHl2W1M6mYbNE0E3OZ' || process.env.DROPBOX
+
+//====================================
 // JSON WEB TOKEN
 //====================================
 
@@ -73,5 +78,5 @@ class DatabaseEnv {
 
 
 module.exports = { 
-    port, nodeEnv, JwtEnv, DatabaseEnv, Mail
+    port, nodeEnv, JwtEnv, DatabaseEnv, Mail, dropboxEnv
 }

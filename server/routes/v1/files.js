@@ -10,8 +10,8 @@ app.post('/api/v1/files/users/:id', [authUser, authUserId, validateFiles, valida
     let id = req.params.id;
     let img = req.files.img.name;    
     
-    let fileName = `${id}${Date.now()}${img}`;
-    let path = `/users/${fileName}`;
+    let fileName = `${id}${Date.now()}us${img}`;
+    let path = `/${fileName}`;
     let contents = req.files.img.data;
     
     DropboxApi.on().upload(path, contents, (err, data) => {
@@ -51,8 +51,8 @@ app.post('/api/v1/files/brands/:id', [authAdmin, validateFiles, validateBrand], 
     let id = req.params.id;
     let img = req.files.img.name;    
 
-    let fileName = `${id}${Date.now()}${img}`;
-    let path = `/brands/${fileName}`;
+    let fileName = `${id}${Date.now()}br${img}`;
+    let path = `/${fileName}`;
     let contents = req.files.img.data;
     
     DropboxApi.on().upload(path, contents, (err, data) => {
@@ -90,8 +90,8 @@ app.post('/api/v1/files/products/:id', [authAdmin, validateFiles, validateProduc
     let id = req.params.id;
     let img = req.files.img.name;    
 
-    let fileName = `${id}${Date.now()}${img}`;
-    let path = `/products/${fileName}`;
+    let fileName = `${id}${Date.now()}pro${img}`;
+    let path = `/${fileName}`;
     let contents = req.files.img.data;
     
     DropboxApi.on().upload(path, contents, (err, data) => {
@@ -138,7 +138,7 @@ app.put('/api/v1/files/users/:id', [authUser, authUserId, validateFiles, validat
 
     let cutImg = req.userData.img.split('/');
     let fileName = cutImg[cutImg.length - 1];
-    let path = `/users/${fileName}`;
+    let path = `/${fileName}`;
 
     DropboxApi.on().delete(path, (err, response) => {
         if(err){
@@ -198,7 +198,7 @@ app.put('/api/v1/files/brands/:id', [authAdmin, validateFiles, validateBrand], a
 
     let cutImg = req.brandData.img.split('/');
     let fileName = cutImg[cutImg.length - 1];
-    let path = `/brands/${fileName}`;
+    let path = `/${fileName}`;
 
     DropboxApi.on().delete(path, (err, response) => {
         if(err){
@@ -257,7 +257,7 @@ app.put('/api/v1/files/products/:id', [authAdmin, validateFiles, validateProduct
 
     let cutImg = req.productData.img.split('/');
     let fileName = cutImg[cutImg.length - 1];
-    let path = `/products/${fileName}`;
+    let path = `/${fileName}`;
 
     DropboxApi.on().delete(path, (err, response) => {
         if(err){
@@ -314,7 +314,7 @@ app.delete('/api/v1/files/users/:id', [authUser, authUserId, validateUser], asyn
 
     let cutImg = req.userData.img.split('/');
     let fileName = cutImg[cutImg.length - 1];
-    let path = `/users/${fileName}`;
+    let path = `/${fileName}`;
 
     DropboxApi.on().delete(path, async (err, response) => {
         if(err){
@@ -346,7 +346,7 @@ app.delete('/api/v1/files/brands/:id', [authAdmin, validateBrand], async (req, r
 
     let cutImg = req.brandData.img.split('/');
     let fileName = cutImg[cutImg.length - 1];
-    let path = `/brands/${fileName}`;
+    let path = `/${fileName}`;
 
     DropboxApi.on().delete(path, async (err, response) => {
         if(err){
@@ -378,7 +378,7 @@ app.delete('/api/v1/files/products/:id', [authAdmin, validateProduct], async (re
 
     let cutImg = req.productData.img.split('/');
     let fileName = cutImg[cutImg.length - 1];
-    let path = `/products/${fileName}`;
+    let path = `/${fileName}`;
 
     DropboxApi.on().delete(path, async (err, response) => {
         if(err){

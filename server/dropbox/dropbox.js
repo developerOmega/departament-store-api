@@ -1,11 +1,12 @@
 let fetch = require('isomorphic-fetch');
 const Dropbox = require('dropbox').Dropbox;
+const { dropboxEnv } = require('../config/config');
 
 class DropboxApi {
     static instance;
 
     constructor(){
-        this.dbx = new Dropbox({accessToken: 'rAiom9haNiAAAAAAAAADAs6vJJaqbAfZ95RRSTtnbx7cvIVHl2W1M6mYbNE0E3OZ', fetch});  
+        this.dbx = new Dropbox({accessToken: dropboxEnv, fetch});  
     }
 
     static on(){
