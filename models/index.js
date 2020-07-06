@@ -9,12 +9,8 @@ const config = require(__dirname + '/../config/config.json');
 const { DatabaseEnv } = require('../server/config/config');
 const db = {};
 
-config.production.username = DatabaseEnv.user;
-config.production.password = DatabaseEnv.password;
-config.production.database = DatabaseEnv.database;
-config.production.host = DatabaseEnv.host;
-
 let sequelize = new Sequelize(DatabaseEnv.database, DatabaseEnv.user, DatabaseEnv.password, {
+  host: DatabaseEnv.host,
   dialect: DatabaseEnv.dialect
 })
 

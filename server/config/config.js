@@ -64,7 +64,7 @@ class Mail {
 // BASE DE DATOS
 //====================================
 class DatabaseEnv {
-    static host = nodeEnv === 'development' ? '127.0.0.1' : process.env.HOST ;
+    static host = nodeEnv === 'development' ? '127.0.0.1' : process.env.HOST;
     static user = nodeEnv === 'development' ? 'postgres' : process.env.USER;
     static password = nodeEnv === 'development' ? '1234': process.env.PASSWORD;
     static database = nodeEnv === 'development' ? 'departament_store' : process.env.DATABASE;
