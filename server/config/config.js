@@ -32,11 +32,11 @@ class JwtEnv {
         algorithm:  ["RS256"]
        };
 
-    static publicAdminKey = nodeEnv == 'development' ? fs.readFileSync('server/key/publicAdmin.key', 'utf8') : process.env.PUBLIC_ADMIN_KEY;
-    static privateAdminKey = nodeEnv == 'development' ? fs.readFileSync('server/key/privateAdmin.key', 'utf8') : process.env.PRIVATE_ADMIN_KEY;
+    static publicAdminKey = nodeEnv == 'development' ? fs.readFileSync('server/key/publicAdmin.key', 'utf8') : process.env.PUBLIC_ADMIN_KEY.replace(/\\n/gm, '\n');
+    static privateAdminKey = nodeEnv == 'development' ? fs.readFileSync('server/key/privateAdmin.key', 'utf8') : process.env.PRIVATE_ADMIN_KEY.replace(/\\n/gm, '\n');
     
-    static publicUserKey = nodeEnv == 'development' ? fs.readFileSync('server/key/publicUser.key', 'utf8') : process.env.PUBLIC_USER_KEY;
-    static privateUserKey = nodeEnv == 'development' ? fs.readFileSync('server/key/privateUser.key', 'utf8') : process.env.PRIVATE_USER_KEY;
+    static publicUserKey = nodeEnv == 'development' ? fs.readFileSync('server/key/publicUser.key', 'utf8') : process.env.PUBLIC_USER_KEY.replace(/\\n/gm, '\n');
+    static privateUserKey = nodeEnv == 'development' ? fs.readFileSync('server/key/privateUser.key', 'utf8') : process.env.PRIVATE_USER_KEY.replace(/\\n/gm, '\n');
 }
 
 //====================================
