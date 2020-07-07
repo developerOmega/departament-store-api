@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
           }
         },
         max: 9999999999999999,
-        min: 9999999999999999
+        min: 1000000000000000
       }
     }
   }, {});
