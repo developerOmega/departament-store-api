@@ -174,7 +174,7 @@ app.get('/api/v1/users/:id/tickets', [authAdminOrUser, authUserId], async (req, 
         let user = await User.findByPk(id);
         let tickets = await Ticket.findAll( {
             where:{userId: user.id},
-            include: {model: Product}
+            include: {model: Product, as: 'Products'}
         })
 
         if(tickets.length < 1){
