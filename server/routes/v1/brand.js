@@ -44,7 +44,7 @@ app.get('/api/v1/brands/:id', authAdminOrUser, async (req, res) => {
     
     try {
         let brand = await Brand.findByPk(id, {
-            include: [{model: Admin}, {model: Type}, {model: Product}]
+            include: [{model: Admin}, {model: Type, as: 'BrandTypes'}, {model: Product}]
         });
         if(!brand){
             return res.status(404).json({
