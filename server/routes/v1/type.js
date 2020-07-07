@@ -107,9 +107,7 @@ app.put('/api/v1/types/:id', authAdmin, async (req, res) => {
             })
         }
 
-        let type = await Type.findByPk(id, {
-            include: { model: Admin, model: Brand }
-        });
+        let type = await Type.findByPk(id, { include: { model: Admin } });
 
         return res.json({
             ok: true,

@@ -111,7 +111,7 @@ app.put('/api/v1/brands/:id', authAdmin, async (req, res) => {
         }
 
         let brand = await Brand.findByPk(id, {
-            include: { model: Admin, model: Type }
+            include: { model: Admin }
         });
 
         return res.json({
