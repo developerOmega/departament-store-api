@@ -164,7 +164,7 @@ app.get('/api/brands/:id/types', authAdminOrUser, async (req, res) => {
     
     try {
         let brand = await Brand.findByPk(id, {
-            include: {model: Type}
+            include: {model: Type, as: 'Types'}
         })
 
         let types = brand.Types;

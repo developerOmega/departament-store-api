@@ -38,7 +38,7 @@ app.get('/api/v1/tickets/:id', [authAdminOrUser, authTicketByUser], async (req, 
     
     try {
         let ticket = await Ticket.findByPk(id, {
-            include: {model: Product}
+            include: {model: Product, as: 'Products'}
         });
 
         if(!ticket){
@@ -109,7 +109,7 @@ app.put('/api/v1/tickets/:id', [authUser, authTicketByUser], async (req, res) =>
         }
 
         let ticket = await Ticket.findByPk(id, {
-            include: [{model: Product}]
+            include: [{model: Product, as: 'Products'}]
         });
 
         let total = 0;

@@ -42,7 +42,7 @@ app.get('/api/v1/types/:id', authAdminOrUser, async (req, res) => {
 
     try {
         let type = await Type.findByPk(id, {
-            include: { model: Admin, model: Brand }
+            include: [{ model: Admin}, {model: Brand, as: 'Brands' }]
         });
         
         if(!type){
@@ -158,7 +158,7 @@ app.get('/api/v1/types/:id/brands', authAdminOrUser, async (req, res) => {
     
     try {
         let type =  await Type.findByPk(id, {
-            include: {model: Brand}
+            include: {model: Brand, as: 'Brands'}
         });
 
         let brands = type.Brands;
