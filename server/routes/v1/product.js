@@ -49,7 +49,7 @@ app.get('/api/v1/products/:id', authAdminOrUser, async (req, res) => {
 
     try {
         let product = await Product.findByPk(id, {
-            include: [{ model: Admin }, {model: Brand}, {model: Type, as: 'Types'}]
+            include: [{ model: Admin }, {model: Brand}, {model: Type}]
         });
 
         if(!product){
@@ -122,7 +122,7 @@ app.put('/api/v1/products/:id', authAdmin, async (req, res) => {
         }
 
         let product = await Product.findByPk(id, {
-            include: [{ model: Admin }, {model: Brand}, {model: Type, as: 'Types'}]
+            include: [{ model: Admin }, {model: Brand}, {model: Type}]
         });
 
         return res.json({
