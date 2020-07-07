@@ -28,8 +28,8 @@ module.exports = (sequelize, DataTypes) => {
             throw new Error("El número de cuenta no puede estar vacío")
           }
         },
-        max: 16,
-        min: 16
+        max: 9999999999999999,
+        min: 9999999999999999
       }
     }
   }, {});
