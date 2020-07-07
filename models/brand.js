@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'adminId'
     });
 
-    Brand.belongsToMany(models.Type, { through: 'BrandTypes' });
+    Brand.belongsToMany(models.Type, { as: 'Types', through: 'BrandTypes', foreignKey: 'brandId' });
 
     Brand.hasMany(models.Product, {
       foreignKey: 'brandId'

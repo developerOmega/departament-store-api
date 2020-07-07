@@ -49,7 +49,7 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "typeId"
     });
 
-    Product.belongsToMany( models.Ticket, { through: 'TicketProducts' } );
+    Product.belongsToMany( models.Ticket, { as:'Tickets', through: 'TicketProducts', foreignKey: 'productId' } );
   };
 
   Product.prototype.imageUrl =  function(url){

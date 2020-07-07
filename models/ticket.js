@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'userId'
     });
 
-    Ticket.belongsToMany(models.Product, {through: 'TicketProducts'});
+    Ticket.belongsToMany(models.Product, {as: 'Products', through: 'TicketProducts', foreignKey: 'ticketId'});
 
   };
   return Ticket;
