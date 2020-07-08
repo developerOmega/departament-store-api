@@ -19,7 +19,6 @@ const dropboxEnv = nodeEnv === 'development' ? 'rAiom9haNiAAAAAAAAADAs6vJJaqbAfZ
 //====================================
 // JSON WEB TOKEN
 //====================================
-
 class JwtEnv {
     static signOptions = {
         issuer:  'Mysoft corp',
